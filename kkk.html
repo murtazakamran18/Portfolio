@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .landing-container {
+    background: var(--colour-secondary-white-100-general, #fff);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+  }
+  
+  .main-content {
+    align-self: end;
+    display: flex;
+    width: 100%;
+    max-width: 1235px;
+    flex-direction: column;
+    transform: translateY(20px);
+    animation: slideUp 0.7s ease-out forwards;
+  }
+  
+  .header-section {
+    gap: 20px;
+    display: flex;
+  }
+  
+  .nav-button {
+    font-feature-settings: "liga" off, "clig" off;
+    border-radius: 2px;
+    background: var(--Colour-Main-Blue-800, #111b47);
+    color: var(--colour-secondary-white-100-general, #fff);
+    text-align: center;
+    width: 100%;
+    margin: auto 0;
+    padding: 3px 37px;
+    font: 500 16px/2 Roboto, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover,
+  .nav-button:focus {
+    background-color: #1a2766;
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #111b47;
+  }
+  
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    fill: var(--Colour-Main-Blue-100, #e7ecff);
+    overflow: hidden;
+    position: relative;
+    min-height: 942px;
+    width: 100%;
+    padding: 12px 0 74px;
+  }
+  
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: scaleIn 1s ease-out forwards;
+  }
+  
+  .nav-container {
+    position: relative;
+    align-self: center;
+    display: flex;
+    margin-left: 60px;
+    width: 551px;
+    max-width: 100%;
+    gap: 20px;
+    font-family: Roboto, sans-serif;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    animation: fadeInDown 0.7s ease-out forwards;
+  }
+  
+  .brand-name {
+    color: var(--Colour-Logo-Primary, #37447e);
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1;
+    transition: color 0.3s ease;
+  }
+  
+  .brand-name:hover {
+    color: #1a2766;
+  }
+  
+  .cta-button,
+  .learn-more-btn,
+  .footer-button {
+    font-feature-settings: "liga" off, "clig" off;
+    border-radius: 2px;
+    background: var(--Colour-Main-Blue-800, #111b47);
+    color: var(--colour-secondary-white-100-general, #fff);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    padding: 2px 55px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover,
+  .learn-more-btn:hover,
+  .footer-button:hover {
+    background-color: #1a2766;
+    transform: translateY(-2px);
+  }
+  
+  .cta-button:focus,
+  .learn-more-btn:focus,
+  .footer-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #111b47;
+  }
+  
+  .hero-content {
+    position: relative;
+    align-self: start;
+    margin-top: 158px;
+    animation: fadeInUp 0.7s ease-out forwards 0.3s;
+    opacity: 0;
+  }
+  
+  .feature-grid {
+    gap: 20px;
+    display: flex;
+  }
+  
+  .feature-text {
+    color: var(--Colour-Main-Blue-500, #505f98);
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  
+  .learn-more-btn {
+    border: 2px solid var(--Colour-Main-Blue-900, #091133);
+    align-self: center;
+    width: 183px;
+    max-width: 100%;
+    font-size: 16px;
+    color: var(--Colour-Main-Blue-900, #091133);
+    background: transparent;
+    margin: 10px 0 0 42px;
+  }
+  
+  .features-section {
+    margin-top: 91px;
+    width: 100%;
+    max-width: 1073px;
+    opacity: 0;
+    animation: fadeIn 0.7s ease-out forwards 0.5s;
+  }
+  
+  .feature-title {
+    color: var(--Colour-Main-Blue-900, #091133);
+    font-feature-settings: "liga" off, "clig" off;
+    font: 500 36px/1 Roboto, sans-serif;
+    margin: 0;
+  }
+  
+  .feature-description {
+    color: var(--Colour-Main-Blue-400, #6f7cb2);
+    font-feature-settings: "liga" off, "clig" off;
+    margin-top: 16px;
+    font: 400 16px/26px Roboto, sans-serif;
+  }
+  
+  .feature-card {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: start;
+    font-family: Roboto, sans-serif;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 36px;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover .card-icon {
+    transform: scale(1.1);
+  }
+  
+  .card-title {
+    color: var(--Colour-Main-Blue-900, #091133);
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2;
+    margin-top: 14px;
+  }
+  
+  .card-description {
+    color: var(--Colour-Main-Grey-600, #5d6970);
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    align-self: stretch;
+    margin-top: 6px;
+  }
+  
+  .footer {
+    background-color: rgba(231, 236, 255, 1);
+    display: flex;
+    margin-top: 146px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 57px 80px 31px;
+    opacity: 0;
+    animation: fadeIn 0.7s ease-out forwards 0.7s;
+  }
+  
+  .footer-content {
+    display: flex;
+    width: 100%;
+    max-width: 1073px;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .footer-divider {
+    background-color: rgba(205, 209, 212, 1);
+    align-self: stretch;
+    display: flex;
+    margin-top: 39px;
+    height: 1px;
+  }
+  
+  .social-icons {
+    display: flex;
+    margin-top: 20px;
+    gap: 29px;
+  }
+  
+  .social-link {
+    transition: transform 0.3s ease;
+  }
+  
+  .social-link:hover {
+    transform: translateY(-3px);
+  }
+  
+  .social-icon {
+    aspect-ratio: 1.23;
+    object-fit: contain;
+    object-position: center;
+    width: 16px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .main-content {
+      max-width: 100%;
+    }
+    
+    .header-section {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .nav-button {
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+  
+    .logo-section {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .nav-container {
+      margin-left: 20px;
+      width: auto;
+    }
+  
+    .hero-content {
+      max-width: 100%;
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+  
+    .feature-grid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+      padding: 0 20px;
+    }
+  
+    .learn-more-btn {
+      margin: 20px auto;
+    }
+  
+    .features-section {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .feature-description {
+      max-width: 100%;
+    }
+  
+    .feature-card {
+      margin-top: 30px;
+    }
+  
+    .footer {
+      max-width: 100%;
+      margin-top: 40px;
+      padding: 40px 20px;
+    }
+  
+    .footer-content {
+      max-width: 100%;
+    }
+  
+    .social-icons {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .landing-container,
+    .main-content,
+    .hero-image,
+    .nav-container,
+    .hero-content,
+    .features-section,
+    .footer,
+    .cta-button,
+    .learn-more-btn,
+    .footer-button,
+    .feature-card,
+    .card-icon,
+    .social-link {
+      animation: none;
+      transition: none;
+      transform: none;
+    }
+  }
+  </style>
+
+<body>
+  <div class="landing-container">
+    <div class="main-content">
+      <div class="header-section">
+        <div class="nav-button" role="button" tabindex="0">Purchase UI Kit</div>
+        <div class="logo-section">
+          <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c823d31a0c29d462a660927ed4ca95f84f214fc98d0b707a1f5131f4afa4d995?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="Hero background" class="hero-image" />
+          <div class="nav-container">
+            <div class="brand-name">Landing</div>
+            <button class="cta-button" aria-label="Buy Now">Buy Now</button>
+          </div>
+          <div class="hero-content">
+            <div class="feature-grid">
+              <div class="feature-text">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+              </div>
+              <button class="learn-more-btn" aria-label="Learn More">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="features-section">
+        <div class="feature-grid">
+          <h2 class="feature-title">Light, Fast & Powerful</h2>
+          <div class="feature-description">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+          </div>
+          <div class="feature-card">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ac50f7700774b87ed6d57d44b4ac9ce6075aa24e43f366ff3fa411ced76f2598?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="Feature icon" class="card-icon" />
+            <h3 class="card-title">Title Goes Here</h3>
+            <p class="card-description">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <button class="footer-button" aria-label="Purchase now">Purchase now</button>
+        <div class="footer-divider" role="separator"></div>
+        <div class="social-icons">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9b7dc237c874a1e6a3ddfb0df67da44bf4397c0c3731e0e8485442df8c80c628?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="" class="social-icon" />
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/cfd90c8da77080d2bb7cd60d8deaff0827a98808d1f82c71c155d5552085e1d3?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="" class="social-icon" />
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/e82fcfc0c3591eed462303960664c81f9e2bd2d460df65f0905f17184743c61f?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="" class="social-icon" />
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7bd500b94e8d6e60da84969d95154a5fe51df5e96c35dfaf85607045e36c6eed?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="" class="social-icon" />
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c159e1839cc9835e5f8680937f14ebc11d94605eac08014fe1c7c123b6e6059e?placeholderIfAbsent=true&apiKey=effe7f14264e48a1a85fdc381066ab1f" alt="" class="social-icon" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  
+</body>
+</html>
